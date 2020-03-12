@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new'
   namespace :admin do
-    resources :users, only: [:index, :new, :edit, :show]
+    resources :users
   end
   root to: 'tasks#index'
   resources :tasks
