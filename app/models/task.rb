@@ -5,7 +5,7 @@ class Task < ApplicationRecord
 
   belongs_to :user
 
-  scope :resent, -> { order(created_at: :desc) }
+  scope :recent, -> { order(created_at: :desc) }
 
   private
 
