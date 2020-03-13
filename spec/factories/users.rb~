@@ -1,0 +1,7 @@
+FactoryBot.define do
+  factory :user do
+    name { 'テストユーザー' }
+    name { 'テストユーザー' }
+    name { 'テストユーザー' }
+  end
+end
