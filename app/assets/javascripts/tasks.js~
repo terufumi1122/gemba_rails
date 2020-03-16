@@ -1,0 +1,23 @@
+# マウスホバーでタスクの背景色を変更
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('td').forEach(function(td){
+    td.addEventListener('mouseover', function(e) {
+      e.currentTarget.style.backgroundColor = '#eff';
+    });
+
+    td.addEventListener('mouseover', function(e) {
+      e.currentTarget.style.backgroundColor = '';
+    });
+  });
+});
+
+# 削除時に該当タスクを非表示にする
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('.delete').forEach(function(a){
+    td.addEventListener('ajax:success', function() {
+      var td = a.parentNode;
+      var tr - td.parentNode;
+      tr.style.display = 'none';
+    });
+  });
+});

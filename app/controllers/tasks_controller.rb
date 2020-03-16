@@ -52,7 +52,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy!
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
+    # redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
+    head :no_content # HTTPステータス204を返す
   end
 
   def task_logger
