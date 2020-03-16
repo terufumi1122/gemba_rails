@@ -6,10 +6,10 @@ h1 登録内容の確認
       tr
         th= Task.human_attribute_name(:name)
         td= @task_name
-        = f.hidden_field :name # hidden_fieldにすることで、ユーザーから見えないようになるが、コントローラに値は受け渡しできる
+        = f.hidden_field :name
       tr
         th= Task.human_attribute_name(:description)
-        td= simple_format(@task.description) # simple_formatで改行等込みで保存がされるようになる
+        td= simple_format(@task.description)
         = f.hidden_field :description
-    = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
-    = f.submit '登録', class: 'btn btn-primary'
+  = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
+  = f.submit '登録', class: 'btn btn-primary'

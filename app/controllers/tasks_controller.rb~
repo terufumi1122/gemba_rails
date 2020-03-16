@@ -14,10 +14,16 @@ class TasksController < ApplicationController
 
   def confirm_new
     @task = current_user.tasks.new(task_params)
-    render :new unless @taks.valid?
+    render :new unless @task.valid?
   end
+
   def create
     @task = current_user.tasks.new(task_params)
+
+    if params[:bask].present? #確認画面の「戻る」に対応する
+      render :new
+      return
+    end
 
     if @task.save
       logger.debug "task: #{@task.attributes.inspect}"
