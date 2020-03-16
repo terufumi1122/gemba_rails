@@ -6,6 +6,7 @@ class Task < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+
   # ransackを使用する際、使用を制限するカラム
   def self.ransackable_attributes(auth_object = nil)
     %w[name created_at]
@@ -32,7 +33,7 @@ class Task < ApplicationRecord
   def self.import(file)                                    # 引数fileにアップロードされたファイルを受け取る
     CSV.foreach(file.path, headers: true) do |row|         # CSV一行ごとに読み込み処理を実施
       task = new                                           # CSV一行毎に、`Task.new`する。
-      task.attributes = row.to_hash.slice(*csv_attributes) # 上記で生成したTaskインスタンスの各属性に、CSVの一行の情報を加工して入れ込む *csv_attributesは
+      task.attributes = row.to_hash.slice(*csv_attributes) # 上記で生成したTaskインスタンスの各属性に、CSVの一行の情報を加工して入れ込む *csv_attributesはslice("name", "description", "created_at", "updated_at")と記述しているのと同じ
       task.save!                                           # DBに保存する（falseであれば例外を発生させる）
     end
   end
