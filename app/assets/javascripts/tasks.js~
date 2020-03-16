@@ -1,0 +1,28 @@
+// マウスホバーでタスクの背景色を変更
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('td').forEach(function(td){
+    td.addEventListener('mouseover', function(e) {
+      e.currentTarget.style.backgroundColor = '#eff';
+    });
+
+    td.addEventListener('mouseover', function(e) {
+      e.currentTarget.style.backgroundColor = '';
+    });
+  });
+});
+
+// 削除したタスクを非表示にする
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('.delete').forEach(function(a){
+    td.addEventListener('ajax:success', function() {
+      var td = a.parentNode;
+      var tr = td.parentNode;
+      tr.style.display = 'none';
+    });
+  });
+});
+
+// Turbolinksの発火タイミング確認用
+document.addEventListener('turbolinks:load', function() {
+  console.log('Loaded');
+});
