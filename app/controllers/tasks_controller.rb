@@ -33,6 +33,7 @@ class TasksController < ApplicationController
 
     if @task.save
       TaskMailer.creation_email(@task).deliver_now
+      SampleJob.perform_later
       # TaskMailer.creation_email(@task).deliver_later(wait: 5.minutes) タスク作成から５分後にメール送信をする
       logger.debug "task: #{@task.attributes.inspect}"
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
