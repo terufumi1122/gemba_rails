@@ -18,7 +18,8 @@ h1 タスク一覧
 table.table.table-hover
   thred.thred-default
     tr
-      th= Task.human_attribute_name(:name)
+      /th= sort_link(@q, :name, [:name, "created_at desc"]) # 基本的には名称でソートし、名称が同じであれば登録日時順にソートするという書き方
+      th= sort_link(@q, :name, default_order: :desc)
       th= Task.human_attribute_name(:created_at)
       th
     tbody
