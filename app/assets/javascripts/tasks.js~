@@ -1,4 +1,4 @@
-# マウスホバーでタスクの背景色を変更
+// マウスホバーでタスクの背景色を変更
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('td').forEach(function(td){
     td.addEventListener('mouseover', function(e) {
@@ -11,13 +11,18 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
-# 削除時に該当タスクを非表示にする
+// 削除したタスクを非表示にする
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('.delete').forEach(function(a){
     td.addEventListener('ajax:success', function() {
       var td = a.parentNode;
-      var tr - td.parentNode;
+      var tr = td.parentNode;
       tr.style.display = 'none';
     });
   });
+});
+
+// Turbolinksの発火タイミング確認用
+document.addEventListener('turbolinks:load', function() {
+  console.log('Loaded');
 });

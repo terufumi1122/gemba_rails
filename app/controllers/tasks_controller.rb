@@ -47,13 +47,13 @@ class TasksController < ApplicationController
 
   def update
     @task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
+    redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
   end
 
   def destroy
     @task.destroy!
     # redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
-    head :no_content # HTTPステータス204を返す
+    # head :no_content # HTTPステータス204を返す
   end
 
   def task_logger
