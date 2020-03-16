@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.recent
+    @q = current_user.tasks.ransack(params[:q])
   end
 
   def show
@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
     if params[:back].present? #確認画面の「戻る」に対応する
       render :new
-      return
+      return # 「戻る」ボタンであれば、これ以降の処理は行わない
     end
 
     if @task.save
