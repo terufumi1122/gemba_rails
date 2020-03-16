@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   resources :tasks do
     post :confirm, action: :confirm_new, on: :new #confirmというURLにPOSTリクエストを投げてください、 対応するactionは confirm_newです。 tasks/newに載せたURLにしてください
+    post :import, on: :collection
   end
 end

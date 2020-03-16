@@ -4,6 +4,11 @@ class TasksController < ApplicationController
   def index
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true)
+
+    respond_to do |format| # アクセスされたformatごとに処理を変更
+      format.html # HTMLフォーマットとしてのアクセスだった場合は何もしない
+      format.csv { send_data @tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" } # CSVフォーマットとしてアクセスされたらcsvを作成する。 send_dataメソッドでレスポンスを送り出す。ブラウザからファイルとしてDLできるようにする。ファイル名はDLするたびに変わるように、現在時刻を使って生成する。
+    end
   end
 
   def show
@@ -51,6 +56,11 @@ class TasksController < ApplicationController
 
   def task_logger
     @task_logger ||= Logger.new('log/task.log', 'daily')
+  end
+
+  def import
+    current_user.tasks.import(params[:file]) # 関連越しにモデルに実装したimportメソッドを呼び出している -> アップロードされたファイルの内容を、ログインしているユーザーのタスク群として登録することができる
+    redirect_to tasks_url, notice: "タスクを追加しました"
   end
 
   private
