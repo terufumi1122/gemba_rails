@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   validate :validate_name_not_including_comma
 
   belongs_to :user
+  has_one_attached :image
 
   # ransackを使用する際、使用を制限するカラム
   def self.ransackable_attributes(auth_object = nil)
