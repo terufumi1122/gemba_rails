@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
     if params[:back].present? #確認画面の「戻る」に対応する
       render :new
-      return
+      return # 「戻る」ボタンであれば、これ以降の処理は行わない
     end
 
     if @task.save

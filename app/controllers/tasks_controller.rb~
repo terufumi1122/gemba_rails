@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
 
-    if params[:bask].present? #確認画面の「戻る」に対応する
+    if params[:back].present? #確認画面の「戻る」に対応する
       render :new
       return
     end
